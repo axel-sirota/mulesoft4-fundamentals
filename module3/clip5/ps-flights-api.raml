@@ -1,0 +1,45 @@
+#%RAML 1.0
+
+title: flights-api
+description: API to get and update flights from American Airlines and Delta
+protocols:
+  - HTTP
+types:
+  Flight: !include data-types/flight.raml
+/flights:
+  get:
+    description: Get Fights from both airlines filtering by origin and destination airport
+    queryParameters:
+      origin:
+        required: true
+        type: string
+        default: SFO
+        description: Origin airport
+      destination:
+        required: true
+        type: string
+        default: JFK
+        description: Destination airport
+      airline:
+        required: false
+        type: string
+        default: ''
+        description: Filter results by airline
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/flights-get.raml
+            type: Flight[]
+  post:
+    description: Insert a new flight
+    body:
+      application/json:
+        type: Flight
+        example: !include examples/flight.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              id: 1

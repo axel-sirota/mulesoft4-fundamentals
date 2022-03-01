@@ -1,0 +1,34 @@
+#%RAML 1.0
+title: Example-API
+/songs:
+  description: Collection of available songs in Jukebox
+  get:
+    description: Get a list of songs based on the song title.
+    queryParameters:
+      songTitle:
+        description: "The title of the song to search (it is case insensitive and doesn't need to match the whole title)"
+        required: true
+        minLength: 3
+        type: string
+        example: "Get L"
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "songs": [
+                  {
+                    "songId": "550e8400-e29b-41d4-a716-446655440000",
+                    "songTitle": "Get Lucky"
+                  },
+                  {
+                    "songId": "550e8400-e29b-41d4-a716-446655440111",
+                    "songTitle": "Loose yourself to dance"
+                  },
+                  {
+                    "songId": "550e8400-e29b-41d4-a716-446655440222",
+                    "songTitle": "Gio sorgio by Moroder"
+                  }
+                ]
+              }

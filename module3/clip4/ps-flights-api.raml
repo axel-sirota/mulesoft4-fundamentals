@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: PS-Flights-API
+description: API to get and update flights from American Airlines and Delta
+protocols:
+  - HTTP
+/flights:
+  get:
+    description: Get Fights from both airlines filtering by origin and destination airport
+    queryParameters:
+      origin:
+        required: true
+        type: string
+        default: SFO
+        description: Origin airport
+      destination:
+        required: true
+        type: string
+        default: JFK
+        description: Destination airport
+      airline:
+        required: false
+        type: string
+        default: ''
+        description: Filter results by airline
+    responses:
+      200:
+        body:
+          application/json:
+  post:
+    description: Insert a new flight
+    responses:
+      201:
+        body:
+          application/json:
+
